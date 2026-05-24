@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import styles from "../styles/Signin.module.css";
 
+
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,10 +12,11 @@ export default function Signin() {
   const handleSignin = async (e) => {
     e.preventDefault();
 
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { data: authData, error: authError } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
     if (authError) {
       alert("Login failed: " + authError.message);
@@ -35,47 +37,46 @@ export default function Signin() {
   };
 
   return (
-    
     <div className={styles.signinWrapper}>
+      <div className={styles.signinPage}>
+        <div className={styles.navbarSI}>
+          <h1>Exam Seating Management System</h1>
+        </div>
 
-    <div className={styles.signinPage}>
-      <div className={styles.navbarSI}>
-        <h1>Exam Seating Management System</h1>
-      </div>
+        <div className={styles.overlaySI}>
+          <div className={styles.signinContainer}>
+            <h1>Login</h1>
+            <form onSubmit={handleSignin} className={styles.signinForm}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.signinInput}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={styles.signinInput}
+                required
+              />
+              <button type="submit" className={styles.signinBtn}>
+                Login
+              </button>
+            </form>
+            <p>
+              Don't have an account?{" "}
+              <a href="/signup" className={styles.signupLink}>
+                Signup
+              </a>
+            </p>
 
-      <div className={styles.overlaySI}>
-        <div className={styles.signinContainer}>
-          <h1>Login</h1>
-          <form onSubmit={handleSignin} className={styles.signinForm}>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.signinInput}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.signinInput}
-              required
-            />
-            <button type="submit" className={styles.signinBtn}>
-              Login
-            </button>
-          </form>
-          <p>
-            Don't have an account?{" "}
-            <a href="/signup" className={styles.signupLink}>
-              Signup
-            </a>
-          </p>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

@@ -135,7 +135,7 @@ export default function Admin() {
 
     if (error) return console.error("Error loading layout:", error);
 
-    const totalSeats = 48;
+    const totalSeats = 36;
     const seatGrid = Array.from({ length: totalSeats }, (_, i) => {
       const seatNumber = i + 1;
       const student = data.find((s) => Number(s.seatNumber) === seatNumber);
@@ -278,7 +278,11 @@ export default function Admin() {
                   />
                   <input type="number" name="row" placeholder="Row" required />
                   <input type="number" name="col" placeholder="Col" required />
-                  <input type="text" name="floor" placeholder="Floor (optional)" />
+                  <input
+                    type="text"
+                    name="floor"
+                    placeholder="Floor (optional)"
+                  />
                 </div>
                 <button type="submit" className={styles.btnSubmit}>
                   Add Student
@@ -440,9 +444,7 @@ export default function Admin() {
                                   <Edit3 size={16} />
                                 </button>
                                 <button
-                                  onClick={() =>
-                                    handleDelete(r.rollNumber)
-                                  }
+                                  onClick={() => handleDelete(r.rollNumber)}
                                   className={styles.btnSmall}
                                 >
                                   <Trash2 size={16} />

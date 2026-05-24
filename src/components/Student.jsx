@@ -59,7 +59,7 @@ export default function Student() {
 
   const renderSeatGrid = () => {
     if (!seatData) return null;
-    const rows = 8;
+    const rows = 6;
     const cols = 6;
     const grid = [];
 
